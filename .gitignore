@@ -1,0 +1,11 @@
+/vendor
+composer.lock
+.phpunit.result.cache
+.phpunit.cache
+.idea
+.vscode
+.DS_Store
+
+# Local env — keep .env.example committed
+.env
+workbench/.env

@@ -1,0 +1,74 @@
+{
+    "name": "imanimen/laravel-sms-switch",
+    "description": "Multi-provider SMS SDK for Laravel with score-based auto-switching, circuit breaker, and metrics. Supports sms.ir, Kavenegar, Melipayamak, MOBINSMS.",
+    "type": "library",
+    "keywords": ["laravel", "sms", "sms.ir", "kavenegar", "melipayamak", "mobinsms", "otp", "circuit-breaker"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "imanimen",
+            "email": "imandevenv@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/database": "^11.0|^12.0",
+        "illuminate/http": "^11.0|^12.0",
+        "illuminate/console": "^11.0|^12.0",
+        "illuminate/queue": "^11.0|^12.0",
+        "ramsey/uuid": "^4.7"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "orchestra/workbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Imanimen\\SmsSwitch\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Imanimen\\SmsSwitch\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "test": "@php vendor/bin/pest --no-coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Imanimen\\SmsSwitch\\SmsSwitchServiceProvider"
+            ],
+            "aliases": {
+                "Sms": "Imanimen\\SmsSwitch\\Facades\\Sms"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,31 @@
+providers:
+  - Imanimen\SmsSwitch\SmsSwitchServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
+
+migrations:
+  - database/migrations
+  - workbench/database/migrations
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+env:
+  APP_NAME: "SMS Switch Workbench"
+  APP_ENV: local
+  APP_DEBUG: true
+  APP_KEY: "base64:vN7c1jS2p5j7cVZmL8bqZ0oNXeQxYjkmR2vAeK+8dEo="
+  DB_CONNECTION: sqlite
+  DB_DATABASE: ":memory:"
+  QUEUE_CONNECTION: sync
+  SMS_SWITCH_MODE: manual
+  SMS_SWITCH_DEFAULT: mobinsms
+
+workbench:
+  start: "/sms"
+  install: true
+  discovers:
+    web: true
+    api: false
+    commands: true
+    components: false
+    views: false
